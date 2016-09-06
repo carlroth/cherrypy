@@ -29,6 +29,10 @@ cache: pip
 env:
 - WEBTEST_INTERACTIVE=false
 
+os:
+- linux
+- osx
+
 before_install: 'if [ "$RUN_LINTS" = "true" ]; then pip install pre-commit; fi'
 install: 'if [ "$RUN_LINTS" != "true" ]; then pip install -e .[test_tools,routes_dispatcher]; fi'
 script: 'if [ "$RUN_LINTS" = "true" ]; then pre-commit run --all-files; else nosetests; fi'
@@ -37,6 +41,7 @@ deploy:
   provider: pypi
   on:
     tags: true
+    os: linux
     python: 3.5
   user: jaraco
   password:
