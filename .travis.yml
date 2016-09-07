@@ -41,6 +41,9 @@ before_install:
 - 'if [ "$RUN_LINTS" = "true" ]; then pip install pre-commit; fi'
 - eval 'if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; fi'
 - eval 'if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install python3; fi'
+- git clone git://github.com/MacPython/terryfy
+- source terryfy/travis_tools.sh
+- get_python_environment macpython ${TOXENV:-2.7.10}
 
 install: 'if [ "$RUN_LINTS" != "true" ]; then pip install -e .[test_tools,routes_dispatcher]; fi'
 script: 'if [ "$RUN_LINTS" = "true" ]; then pre-commit run --all-files; else nosetests; fi'
