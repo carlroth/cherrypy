@@ -44,7 +44,7 @@ before_install:
 - eval 'if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install python3; fi'
 - git clone git://github.com/MacPython/terryfy
 - source terryfy/travis_tools.sh
-- get_python_environment macpython ${TOXENV:-2.7.10}
+- eval 'if [ "$TRAVIS_OS_NAME" = "osx" ]; then get_python_environment macpython '${TOXENV:-2.7.10}'; fi'
 - pip install -U nose pip
 - env
 
