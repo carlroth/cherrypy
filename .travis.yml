@@ -27,6 +27,7 @@ matrix:
   include:
     - os: osx
       language: generic
+      python: 2.7
 
 cache: pip
 
@@ -44,6 +45,8 @@ before_install:
 - git clone git://github.com/MacPython/terryfy
 - source terryfy/travis_tools.sh
 - get_python_environment macpython ${TOXENV:-2.7.10}
+- pip install -U nose pip
+- env
 
 install: 'if [ "$RUN_LINTS" != "true" ]; then pip install -e .[test_tools,routes_dispatcher]; fi'
 script: 'if [ "$RUN_LINTS" = "true" ]; then pre-commit run --all-files; else nosetests; fi'
