@@ -28,6 +28,8 @@ matrix:
     - os: osx
       language: generic
       python: 2.7
+      sudo: true
+
 
 cache: pip
 
