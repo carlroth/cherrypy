@@ -80,7 +80,7 @@ env:
 os: linux
 
 before_install:
-- git clone --recursive -j4 git://github.com/MacPython/terryfy
+- git clone --recursive git://github.com/MacPython/terryfy
 - source terryfy/multibuild/common_utils.sh
 - source terryfy/multibuild/travis_steps.sh
 - before_install
