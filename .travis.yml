@@ -80,18 +80,18 @@ env:
 os: linux
 
 before_install:
+- git clone --recursive -j4 git://github.com/MacPython/terryfy
+- source terryfy/multibuild/common_utils.sh
+- source terryfy/multibuild/travis_steps.sh
+- before_install
 - |
   if [ "$TRAVIS_OS_NAME" = "osx" ]
   then
     #brew update
     #brew install python3
-    git clone git://github.com/MacPython/terryfy
     echo '$TRAVIS_PYTHON_VERSION' $TRAVIS_PYTHON_VERSION;
     #bash -c "source terryfy/travis_tools.sh; get_python_environment macpython '"${TRAVIS_PYTHON_VERSION}"'; python --version; pyenv activate '"$TRAVIS_PYTHON_VERSION"'"
     python --version
-    source terryfy/multibuild/common_utils.sh
-    source terryfy/multibuild/travis_steps.sh
-    before_install
   fi
 - |
   if [ "$RUN_LINTS" = "true" ]
