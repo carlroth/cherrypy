@@ -90,7 +90,7 @@ before_install:
 - pip install -U nose pip
 - env
 
-install: if [ "$RUN_LINTS" != "true" ]; then pip install -U nose pip; pip install -e .[test_tools,routes_dispatcher]; fi
+install: if [ "$RUN_LINTS" != "true" ]; then pip install -U nose; pip install -e .[test_tools,routes_dispatcher]; fi
 script: if [ "$RUN_LINTS" = "true" ]; then pre-commit run --all-files; else python -m nose; fi
 
 deploy:
