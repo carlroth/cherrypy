@@ -51,7 +51,7 @@ before_install:
 - env
 
 install: if [ "$RUN_LINTS" != "true" ]; then pip install -U nose pip; pip install -e .[test_tools,routes_dispatcher]; fi
-script: if [ "$RUN_LINTS" = "true" ]; then pre-commit run --all-files; else nosetests; fi
+script: if [ "$RUN_LINTS" = "true" ]; then pre-commit run --all-files; else python -m nose; fi
 
 deploy:
   provider: pypi
