@@ -94,16 +94,16 @@ before_install:
     python --version
   fi
 - |
+  if [ "${TRAVIS_PYTHON_VERSION:0:3}" = "3.2" ]
+  then
+    easy-install pip==6.0.2
+  fi
+- |
   if [ "$RUN_LINTS" = "true" ]
   then
     pip install pre-commit
   else
     pip install -U nose
-  fi
-- |
-  if [ "${TRAVIS_PYTHON_VERSION:0:3}" = "3.2" ]
-  then
-    pip install --force-reinstall pip==6.0.2
   fi
 - env
 
