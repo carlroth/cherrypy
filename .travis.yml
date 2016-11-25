@@ -77,9 +77,7 @@ cache: pip
 env:
 - WEBTEST_INTERACTIVE=false
 
-os:
-- linux
-- osx
+os: linux
 
 before_install:
 - if [ "$RUN_LINTS" = "true" ]; then pip install pre-commit; fi
