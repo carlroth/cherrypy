@@ -86,6 +86,10 @@ before_install:
 - git clone git://github.com/MacPython/terryfy
 - if [ "$TRAVIS_OS_NAME" = "osx" ]; then echo '$TRAVIS_PYTHON_VERSION' $TRAVIS_PYTHON_VERSION; bash -c "source terryfy/travis_tools.sh; get_python_environment macpython '"${TRAVIS_PYTHON_VERSION}"'; python --version; pyenv activate '"$TRAVIS_PYTHON_VERSION"'"; python --version; fi
 - env
+- source terryfy/multibuild/common_utils.sh
+- source terryfy/multibuild/travis_steps.sh
+- before_install
+
 
 install: if [ "$RUN_LINTS" != "true" ]; then pip install -U nose; pip install -e .[test_tools,routes_dispatcher]; fi
 script: if [ "$RUN_LINTS" = "true" ]; then pre-commit run --all-files; else python -m nose; fi
