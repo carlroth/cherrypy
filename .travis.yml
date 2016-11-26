@@ -78,6 +78,7 @@ env:
 - WEBTEST_INTERACTIVE=false
 
 os: linux
+osx_image: xcode6.1
 
 before_install:
 - git clone --recursive git://github.com/MacPython/terryfy
