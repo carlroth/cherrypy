@@ -83,6 +83,7 @@ before_install:
 - git clone --recursive git://github.com/MacPython/terryfy
 - source terryfy/multibuild/common_utils.sh
 - source terryfy/multibuild/travis_steps.sh
+- source config.sh
 - before_install
 - |
   if [ "$TRAVIS_OS_NAME" = "osx" ]
@@ -92,11 +93,7 @@ before_install:
     echo '$TRAVIS_PYTHON_VERSION' $TRAVIS_PYTHON_VERSION;
     #bash -c "source terryfy/travis_tools.sh; get_python_environment macpython '"${TRAVIS_PYTHON_VERSION}"'; python --version; pyenv activate '"$TRAVIS_PYTHON_VERSION"'"
     python --version
-  fi
-- |
-  if [ "${TRAVIS_PYTHON_VERSION:0:3}" = "3.2" ]
-  then
-    easy-install pip==6.0.2
+    pip --version
   fi
 - |
   if [ "$RUN_LINTS" = "true" ]
