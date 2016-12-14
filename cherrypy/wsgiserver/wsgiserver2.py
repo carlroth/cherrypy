@@ -1304,6 +1304,9 @@ class CP_fileobject(socket._fileobject):
                     buf_len += n
                 return "".join(buffers)
 
+BUG_SWL_3519 = False
+if sys.version_info >= (2, 7, 9):
+    BUG_SWL_3519 = True
 
 class HTTPConnection(object):
 
@@ -1324,8 +1327,13 @@ class HTTPConnection(object):
     def __init__(self, server, sock, makefile=CP_fileobject):
         self.server = server
         self.socket = sock
-        self.rfile = makefile(sock._sock, "rb", self.rbufsize)
-        self.wfile = makefile(sock._sock, "wb", self.wbufsize)
+
+        if BUG_SWL_3519 and self.server.ssl_adapter is not None:
+            self.rfile = makefile(sock, "rb", self.rbufsize)
+            self.wfile = makefile(sock, "wb", self.wbufsize)
+        else:
+            self.rfile = makefile(sock._sock, "rb", self.rbufsize)
+            self.wfile = makefile(sock._sock, "wb", self.wbufsize)
         self.requests_seen = 0
 
     def communicate(self):
